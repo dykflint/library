@@ -1,3 +1,4 @@
+// the class version of the library project
 const bookCardsContainer = document.querySelector('#book-cards');
 const submitNewBookButton = document.querySelector('#submit-book');
 // Books array
