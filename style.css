@@ -1,0 +1,46 @@
+#book-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+}
+.bookCard {
+    background-color: #6366f1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 25px;
+    position: relative;
+}
+
+.bookCard button {
+    border: none;
+    padding: 15px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.bookCard button:hover {
+    cursor: pointer;
+}
+.read {
+    background-color: #4d7c0f;
+    color: white;
+}
+.notreadyet {
+    background-color: #dc2626;
+    color: white;
+}
+.removeBook {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    color: white;
+    font-size: 15px !important;
+    background-color: #fde047;
+    padding: 10px !important;
+    color: #422006;
+}
