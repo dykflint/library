@@ -1,26 +1,41 @@
+// Class constructor 
+class Book {
+    constructor(title, author, numPages, readStatus) {
+        this.title = title;
+        this.author = author;
+        this.numPages = numPages;
+        this.readStatus = readStatus;
+        this.info = function() {
+            return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.readStatus}.`
+        };
+    }
+}
+
 // the class version of the library project
 const bookCardsContainer = document.querySelector('#book-cards');
 const submitNewBookButton = document.querySelector('#submit-book');
 // Books array
 const myLibrary = [];
-const theHobbit = new book("The Hobbit", "J.R.R. Tolkien", 295, "not read yet");
-const harryPotterPS = new book("Harry and the Philosopher's Stone", "J.K. Rowling", "223", "read")
+const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "not read yet");
+const harryPotterPS = new Book("Harry and the Philosopher's Stone", "J.K. Rowling", "223", "read")
 myLibrary.push(theHobbit);
 myLibrary.push(harryPotterPS);
 // A constructor for books
 // It contains the title, author, number of pages and whether the book has been read 
-function book(title, author, numPages, readStatus) {
-    this.title = title;
-    this.author = author;
-    this.numPages = numPages;
-    this.readStatus = readStatus;
-    this.info = function() {
-        return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.readStatus}.`
-    };
-}
 
-function addBookToLibrary() {
 
+
+function addBookToLibrary(event) {
+    // get input values and reset them for next book
+    bookTitle = document.getElementById("book-title").value;
+    bookAuthor = document.getElementById("book-author").value;
+    numPages = document.getElementById("num-pages").value;
+    readStatus = document.querySelector('input[name="read-status"]:checked').value;
+    newBook = new Book(bookTitle, bookAuthor, numPages, readStatus);
+    myLibrary.push(newBook);
+    bookCardsContainer.innerHTML = "";
+    showBookCards(myLibrary);
+    addButtonFunctions();
 }
 
 function showBookCards(bookArr) {
@@ -93,16 +108,7 @@ function removeBook(index) {
 submitNewBookButton.addEventListener("click", (event) => {
     // disbale default submit behavior of form button
     event.preventDefault();
-    // get input values and reset them for next book
-    bookTitle = document.getElementById("book-title").value;
-    bookAuthor = document.getElementById("book-author").value;
-    numPages = document.getElementById("num-pages").value;
-    readStatus = document.querySelector('input[name="read-status"]:checked').value;
-    newBook = new book(bookTitle, bookAuthor, numPages, readStatus);
-    myLibrary.push(newBook);
-    bookCardsContainer.innerHTML = "";
-    showBookCards(myLibrary);
-    addButtonFunctions();
-})
+    addBookToLibrary(event);
+});
 showBookCards(myLibrary);
 addButtonFunctions();
